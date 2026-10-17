@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as authRouteRouteImport } from './routes/(auth)/route'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as ImageGenerationRouteImport } from './routes/image-generation'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as UserAgreementRouteImport } from './routes/user-agreement'
 import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-password'
@@ -84,6 +86,16 @@ const authRouteRoute = authRouteRouteImport.update({
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImageGenerationRoute = ImageGenerationRouteImport.update({
+  id: '/image-generation',
+  path: '/image-generation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
@@ -424,6 +436,8 @@ const AuthenticatedSystemSettingsSiteSectionRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/home': typeof HomeRoute
+  '/image-generation': typeof ImageGenerationRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/user-agreement': typeof UserAgreementRoute
   '/system-settings': typeof AuthenticatedSystemSettingsRouteRouteWithChildren
@@ -487,6 +501,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/home': typeof HomeRoute
+  '/image-generation': typeof ImageGenerationRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/user-agreement': typeof UserAgreementRoute
   '/forgot-password': typeof authForgotPasswordRoute
@@ -552,6 +568,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/(auth)': typeof authRouteRouteWithChildren
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/home': typeof HomeRoute
+  '/image-generation': typeof ImageGenerationRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/user-agreement': typeof UserAgreementRoute
   '/_authenticated/system-settings': typeof AuthenticatedSystemSettingsRouteRouteWithChildren
@@ -617,6 +635,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/home'
+    | '/image-generation'
     | '/privacy-policy'
     | '/user-agreement'
     | '/system-settings'
@@ -680,6 +700,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/home'
+    | '/image-generation'
     | '/privacy-policy'
     | '/user-agreement'
     | '/forgot-password'
@@ -744,6 +766,8 @@ export interface FileRouteTypes {
     | '/'
     | '/(auth)'
     | '/_authenticated'
+    | '/home'
+    | '/image-generation'
     | '/privacy-policy'
     | '/user-agreement'
     | '/_authenticated/system-settings'
@@ -810,6 +834,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   authRouteRoute: typeof authRouteRouteWithChildren
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  HomeRoute: typeof HomeRoute
+  ImageGenerationRoute: typeof ImageGenerationRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   UserAgreementRoute: typeof UserAgreementRoute
   errors401Route: typeof errors401Route
@@ -846,6 +872,20 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/image-generation': {
+      id: '/image-generation'
+      path: '/image-generation'
+      fullPath: '/image-generation'
+      preLoaderRoute: typeof ImageGenerationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy-policy': {
@@ -1419,6 +1459,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   authRouteRoute: authRouteRouteWithChildren,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  HomeRoute: HomeRoute,
+  ImageGenerationRoute: ImageGenerationRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   UserAgreementRoute: UserAgreementRoute,
   errors401Route: errors401Route,

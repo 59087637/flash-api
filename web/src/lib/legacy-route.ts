@@ -34,6 +34,21 @@ const legacyConsoleRoutes: Record<string, string> = {
   '/console/task': '/usage-logs/task',
 }
 
+const legacyPublicRoutes: Record<string, string> = {
+  '/register': '/sign-up',
+  '/plaza': '/pricing',
+  '/universe': '/pricing',
+  '/platform': '/dashboard',
+  '/developers': '/about',
+  '/key-usage': '/usage-logs',
+  '/legal/terms': '/user-agreement',
+  '/legal/usage-policy': '/request-policies',
+  '/legal/supported-regions': '/about',
+  '/legal/service-specific-terms': '/about',
+  '/index.html': '/dashboard',
+  '/index.original.html': '/dashboard',
+}
+
 const legacySettingsTabs: Record<string, string> = {
   operation: '/system-settings/operations/behavior',
   dashboard: '/system-settings/content/dashboard',
@@ -74,6 +89,10 @@ export function resolveLegacyRoute(rawHref: string): string | null {
   const pathname = normalizeLegacyPath(source.pathname)
   if (pathname === '/login') {
     return buildTargetHref('/sign-in', source)
+  }
+  const legacyPublicTarget = legacyPublicRoutes[pathname]
+  if (legacyPublicTarget) {
+    return buildTargetHref(legacyPublicTarget, source)
   }
   if (pathname === '/forbidden') {
     return buildTargetHref('/403', source)

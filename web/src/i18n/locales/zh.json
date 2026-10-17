@@ -4251,6 +4251,7 @@
     "one keyword per line": "每行一个关键词",
     "online": "在线",
     "Online": "在线",
+    "Online Recharge": "在线充值",
     "Online payment is not enabled. Please contact the administrator.": "管理员未开启在线支付功能，请联系管理员配置。",
     "Online topup is not enabled. Please use redemption code or contact administrator.": "尚未启用在线充值。请使用兑换码或联系管理员。",
     "Only allow specific email domains": "仅允许特定的电子邮件域名",
@@ -7280,6 +7281,14 @@
     "Zhipu": "智谱",
     "Zhipu GLM": "智谱GLM",
     "Zhipu V4": "智谱 V4",
-    "Zoom": "缩放"
+    "Zoom": "缩放",
+    "A single gateway for all your models": "一个入口，接入所有模型",
+    "Connect through one API with unified billing and usage logs.": "通过一个 API 接入，统一计费与用量记录。",
+    "Unified API": "统一接口",
+    "Provider routing": "多渠道路由",
+    "Transparent usage": "用量透明",
+    "OpenAI, Claude and Gemini compatible endpoints share one base URL and one key.": "OpenAI、Claude、Gemini 兼容端点共用同一个地址和密钥。",
+    "Pick upstream channels and models per request without changing your client.": "按请求选择上游渠道和模型，客户端无需改动。",
+    "Requests, tokens, quota and billing are tracked in one console.": "请求、Token、额度与账单集中在控制台管理。"
   }
 }

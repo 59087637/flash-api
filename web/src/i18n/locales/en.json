@@ -4251,6 +4251,7 @@
     "one keyword per line": "one keyword per line",
     "online": "online",
     "Online": "Online",
+    "Online Recharge": "Online Recharge",
     "Online payment is not enabled. Please contact the administrator.": "Online payment is not enabled. Please contact the administrator.",
     "Online topup is not enabled. Please use redemption code or contact administrator.": "Online topup is not enabled. Please use redemption code or contact administrator.",
     "Only allow specific email domains": "Only allow specific email domains",
@@ -7280,6 +7281,14 @@
     "Zhipu": "Zhipu",
     "Zhipu GLM": "Zhipu GLM",
     "Zhipu V4": "Zhipu V4",
-    "Zoom": "Zoom"
+    "Zoom": "Zoom",
+    "A single gateway for all your models": "A single gateway for all your models",
+    "Connect through one API with unified billing and usage logs.": "Connect through one API with unified billing and usage logs.",
+    "Unified API": "Unified API",
+    "Provider routing": "Provider routing",
+    "Transparent usage": "Transparent usage",
+    "OpenAI, Claude and Gemini compatible endpoints share one base URL and one key.": "OpenAI, Claude and Gemini compatible endpoints share one base URL and one key.",
+    "Pick upstream channels and models per request without changing your client.": "Pick upstream channels and models per request without changing your client.",
+    "Requests, tokens, quota and billing are tracked in one console.": "Requests, tokens, quota and billing are tracked in one console."
   }
 }

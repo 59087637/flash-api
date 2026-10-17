@@ -16,8 +16,18 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-export { CTA } from './sections/cta'
-export { Features } from './sections/features'
-export { Hero } from './sections/hero'
-export { HowItWorks } from './sections/how-it-works'
-export { Stats } from './sections/stats'
+import { createFileRoute, redirect } from '@tanstack/react-router'
+
+/**
+ * Top-nav entry for image generation. The model square already knows how to
+ * filter image-capable models, so land there with the filter pre-applied.
+ * Replace this route with a real generation page when one is available.
+ */
+export const Route = createFileRoute('/image-generation')({
+  beforeLoad: () => {
+    throw redirect({
+      to: '/pricing',
+      search: { endpointType: 'image-generation' },
+    })
+  },
+})

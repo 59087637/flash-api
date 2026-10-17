@@ -1,3 +1,7 @@
+> **Flash API** — 本仓库是 [New API](https://github.com/QuantumNous/new-api) 的二次开发版本，加入了深空轨道主题与五项顶部导航。改动、部署与许可说明见 [README_FLASH.md](./README_FLASH.md)。
+>
+> **Flash API** is a modified fork of New API with the Orbit dark theme and a five-item top navigation. See [README_FLASH.md](./README_FLASH.md) for changes, deployment and licensing.
+
 <div align="center">
 
 ![new-api](/web/public/logo.png)

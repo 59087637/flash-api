@@ -32,16 +32,11 @@ export type TopNavLink = {
 }
 
 /**
- * Generate top navigation links based on HeaderNavModules configuration from backend /api/status
- * Backend format example (stringified JSON):
- * {
- *   home: true,
- *   console: true,
- *   pricing: { enabled: true, requireAuth: false },
- *   rankings: { enabled: true, requireAuth: false },
- *   docs: true,
- *   about: true
- * }
+ * Generate the top navigation links.
+ *
+ * The deployed order is: Home, Console, Image Generation, Online Recharge,
+ * Model Square. Home/Console/Model Square still honour the backend
+ * HeaderNavModules switches; the two commerce entries are fixed here.
  */
 export function useTopNavLinks(): TopNavLink[] {
   const { t } = useTranslation()
@@ -55,10 +50,12 @@ export function useTopNavLinks(): TopNavLink[] {
     )
   }, [status])
 
-  // Documentation link (may be external)
-  const docsLink: string | undefined = status?.docs_link as string | undefined
-
   const isAuthed = !!auth?.user
+
+  // Dedicated image-generation entry. Replace this with your own generation
+  // page (or an absolute URL) when one is available; the route redirects to
+  // the model square pre-filtered to image-generation endpoints.
+  const imageGenerationHref = '/image-generation'
 
   const links: TopNavLink[] = []
 
@@ -72,32 +69,27 @@ export function useTopNavLinks(): TopNavLink[] {
     links.push({ title: t('Console'), href: '/dashboard' })
   }
 
+  // Image generation
+  if (status?.enable_drawing !== false) {
+    links.push({
+      title: t('Image Generation'),
+      href: imageGenerationHref,
+      requiresAuth: !isAuthed,
+    })
+  }
+
+  // Online recharge -> wallet
+  links.push({
+    title: t('Online Recharge'),
+    href: '/wallet',
+    requiresAuth: !isAuthed,
+  })
+
   // Pricing
   const pricing = modules?.pricing
   if (pricing && typeof pricing === 'object' && pricing.enabled) {
     const requiresAuth = pricing.requireAuth && !isAuthed
     links.push({ title: t('Model Square'), href: '/pricing', requiresAuth })
-  }
-
-  // Rankings
-  const rankings = modules?.rankings
-  if (rankings && typeof rankings === 'object' && rankings.enabled) {
-    const requiresAuth = rankings.requireAuth && !isAuthed
-    links.push({ title: t('Rankings'), href: '/rankings', requiresAuth })
-  }
-
-  // Docs (supports external links)
-  if (modules?.docs !== false) {
-    if (docsLink) {
-      links.push({ title: t('Docs'), href: docsLink, external: true })
-    } else {
-      links.push({ title: t('Docs'), href: '/docs' })
-    }
-  }
-
-  // About
-  if (modules?.about !== false) {
-    links.push({ title: t('About'), href: '/about' })
   }
 
   return links

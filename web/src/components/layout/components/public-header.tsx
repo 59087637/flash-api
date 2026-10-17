@@ -216,8 +216,8 @@ export function PublicHeader(props: PublicHeaderProps) {
           >
             {/* Logo */}
             <div className='@container/system-brand flex min-w-0 flex-1 items-center gap-1 lg:min-w-36'>
-              <Link
-                to={homeUrl}
+              <a
+                href={homeUrl}
                 className='group flex min-w-0 items-center gap-2.5'
               >
                 <div className='flex size-7 shrink-0 items-center justify-center transition-all duration-300 group-hover:scale-105'>
@@ -233,7 +233,7 @@ export function PublicHeader(props: PublicHeaderProps) {
                     displaySiteName
                   )}
                 </span>
-              </Link>
+              </a>
               <SystemUpdateAction presentation='version' />
             </div>
 

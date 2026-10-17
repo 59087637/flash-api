@@ -1,0 +1,180 @@
+/* ============================================================
+   深空轨道主题 (Orbit Theme) — 用于 new-api 面板
+   配色取自 123API 首页的深空青蓝色系
+   ============================================================ */
+
+html.orbit-on,
+html.orbit-on.dark {
+  color-scheme: dark;
+
+  /* 基础色板：深空蓝底 + 冰白前景 + 青色主色 */
+  --background: #07131f;
+  --foreground: #e3f5fa;
+
+  --card: rgba(16, 40, 59, 0.72);
+  --card-foreground: #e3f5fa;
+  --popover: rgba(11, 29, 44, 0.94);
+  --popover-foreground: #e3f5fa;
+
+  --primary: #70e0ed;
+  --primary-foreground: #04121c;
+
+  --muted: rgba(24, 56, 80, 0.72);
+  --muted-foreground: #9dc3d8;
+
+  --accent: color-mix(in oklch, var(--primary) 16%, var(--background));
+  --accent-foreground: #e3f5fa;
+
+  --border: rgba(90, 174, 219, 0.22);
+  --input: rgba(90, 174, 219, 0.26);
+  --ring: #70e0ed;
+
+  --sidebar: rgba(8, 24, 37, 0.78);
+  --sidebar-foreground: #cfe6f0;
+  --sidebar-border: rgba(90, 174, 219, 0.16);
+  --sidebar-primary: #70e0ed;
+  --sidebar-primary-foreground: #04121c;
+  --sidebar-accent: rgba(90, 174, 219, 0.12);
+  --sidebar-accent-foreground: #e3f5fa;
+
+  --table-row: rgba(11, 29, 44, 0.35);
+  --table-header: rgba(24, 56, 80, 0.72);
+  --table-header-foreground: #cfe6f0;
+
+  --destructive: #f2b3ad;
+  --destructive-foreground: #2a0805;
+  --success: #7fe0c0;
+  --warning: #f3c77b;
+  --info: #7cc3f0;
+}
+
+/* ---------- 背景层 ---------- */
+
+/* 静态渐变底：即使不开动画，页面也是深空质感 */
+html.orbit-on body {
+  background-color: #07131f !important;
+  background-image:
+    radial-gradient(1200px 700px at 78% -8%, rgba(46, 196, 218, 0.16), transparent 62%),
+    radial-gradient(900px 600px at 8% 12%, rgba(90, 174, 219, 0.13), transparent 60%),
+    radial-gradient(1000px 800px at 50% 110%, rgba(112, 224, 237, 0.08), transparent 65%),
+    linear-gradient(180deg, #07131f 0%, #081624 45%, #061019 100%);
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+}
+
+/* 让页面底色透出，粒子层才可见 */
+html.orbit-on #root {
+  background: transparent !important;
+}
+
+/* ---------- 粒子画布 ---------- */
+
+#orbit-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  display: block;
+}
+
+html.orbit-on #root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 玻璃质感 ---------- */
+
+html.orbit-on [data-slot='card'],
+html.orbit-on .bg-card {
+  backdrop-filter: blur(12px) saturate(125%);
+  -webkit-backdrop-filter: blur(12px) saturate(125%);
+}
+
+html.orbit-on [data-slot='popover-content'],
+html.orbit-on [role='dialog'] {
+  backdrop-filter: blur(18px) saturate(130%);
+  -webkit-backdrop-filter: blur(18px) saturate(130%);
+}
+
+/* ---------- 细节微调 ---------- */
+
+/* 主按钮带一点青色辉光，和星场呼应 */
+html.orbit-on .bg-primary {
+  box-shadow: 0 0 0 1px rgba(112, 224, 237, 0.28), 0 6px 26px -8px rgba(46, 196, 218, 0.55);
+}
+
+/* 滚动条 */
+html.orbit-on ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+html.orbit-on ::-webkit-scrollbar-track {
+  background: rgba(8, 22, 36, 0.6);
+}
+html.orbit-on ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(112, 224, 237, 0.35), rgba(46, 196, 218, 0.28));
+  border-radius: 6px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+html.orbit-on ::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(112, 224, 237, 0.55), rgba(46, 196, 218, 0.45));
+  background-clip: padding-box;
+}
+
+/* ---------- 开关按钮 ---------- */
+
+#orbit-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 99999;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(112, 224, 237, 0.28);
+  background: rgba(8, 24, 37, 0.82);
+  color: #cfe6f0;
+  font-size: 12px;
+  line-height: 1;
+  font-family: inherit;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 18px -8px rgba(0, 0, 0, 0.8);
+  user-select: none;
+}
+#orbit-toggle:hover {
+  border-color: rgba(112, 224, 237, 0.6);
+  color: #e3f5fa;
+  box-shadow: 0 6px 24px -8px rgba(46, 196, 218, 0.5);
+}
+#orbit-toggle .ot-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #70e0ed;
+  box-shadow: 0 0 8px 1px rgba(112, 224, 237, 0.9);
+}
+#orbit-toggle[data-state='off'] .ot-dot {
+  background: #5b7488;
+  box-shadow: none;
+}
+#orbit-toggle[data-state='auto'] .ot-dot {
+  background: #f3c77b;
+  box-shadow: 0 0 8px 1px rgba(243, 199, 123, 0.8);
+}
+
+/* ---------- 背景穿透 ----------
+   #root 内部还有一层铺满视口的不透明容器（bg-background / min-h-screen），
+   不透明的话粒子层会被完全盖住 —— 这里统一打穿。卡片用的是 bg-card，不受影响。 */
+html.orbit-on #root > div,
+html.orbit-on #root .bg-background,
+html.orbit-on #root [class*='min-h-screen'] {
+  background-color: transparent !important;
+}

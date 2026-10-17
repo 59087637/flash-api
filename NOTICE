@@ -55,4 +55,20 @@ Desktop distributions include Electron, which embeds Chromium, Node.js, V8,
 and other third-party components. Electron and Chromium third-party license
 notices must remain available with desktop installers and installed apps.
 
+==== Modifications (Flash API) ====
+
+This repository is a modified version of new-api. The following changes were
+made and are marked here in accordance with AGPLv3 Section 7(c):
+
+  - Added the Orbit dark theme (web/public/orbit.css, web/public/orbit.js)
+  - Added a custom five-item top navigation
+    (web/src/hooks/use-top-nav-links.ts)
+  - Added the image-generation entry route
+    (web/src/routes/image-generation.tsx)
+  - Reworked legacy public route mappings and the root/home routes
+  - Applied Flash API branding and copy
+
+Modifications copyright (C) 2026 Flash API contributors.
+The combined work remains licensed under AGPL-3.0; see LICENSE.
+
 ==== End of Notices ====

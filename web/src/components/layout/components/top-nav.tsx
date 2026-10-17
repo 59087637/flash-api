@@ -68,11 +68,11 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
                 <DropdownMenuItem
                   key={`${title}-${href}`}
                   render={
-                    external ? (
+                    external || href === '/' ? (
                       <a
                         href={href}
-                        target='_blank'
-                        rel='noopener noreferrer'
+                        target={external ? '_blank' : undefined}
+                        rel={external ? 'noopener noreferrer' : undefined}
                         className={!isActive ? 'text-muted-foreground' : ''}
                       >
                         {title}
@@ -103,12 +103,12 @@ export function TopNav({ className, links, ...props }: TopNavProps) {
         {...props}
       >
         {normalizedLinks.map(({ title, href, isActive, disabled, external }) =>
-          external ? (
+          external || href === '/' ? (
             <a
               key={`${title}-${href}`}
               href={href}
-              target='_blank'
-              rel='noopener noreferrer'
+              target={external ? '_blank' : undefined}
+              rel={external ? 'noopener noreferrer' : undefined}
               className={`hover:text-primary text-sm font-medium transition-colors ${isActive ? '' : 'text-muted-foreground'}`}
             >
               {title}
