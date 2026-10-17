@@ -41,6 +41,12 @@ cd "$SRC/web" && bun install --frozen-lockfile && bun run build
 cd "$SRC" && go build -o new-api .
 ```
 
+### nginx 与静态首页
+
+`deploy/nginx.conf.example` 是一份可参考的 nginx 配置：面板反代到 `127.0.0.1:3000`，`/` 和 `/home` 指向 `/opt/flash-home` 的静态首页。
+
+静态首页是独立项目，源码不在本仓库。部署时把它的构建产物放到 `/opt/flash-home`，或修改 nginx 的 `root` 指向你的目录。
+
 ## 配置
 
 - 站点名称、Logo、文档地址：后台「设置 → 站点」。
