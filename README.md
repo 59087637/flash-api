@@ -4,7 +4,7 @@
 >
 > A self-hosted AI gateway with a rebuilt interface. Built on top of New API.
 
-![Flash API 顶部导航](docs/preview-header.png)
+![Flash API 首页](docs/screenshots/hero.jpg)
 
 ## 目录
 
@@ -98,6 +98,24 @@ New API 的后端能力已经很完整，默认界面也能用。但当它作为
 | 品牌 | `web/index.html`、`web/src/components/layout/components/footer.tsx` | Flash API 标题与页脚署名 |
 
 这一版没有改后端的计费、调度和数据结构。升级上游时，冲突主要集中在上面这些前端文件。
+
+## 界面
+
+首页（静态页，由 nginx 单独提供）：
+
+![首页](docs/screenshots/hero.jpg)
+
+| 统一接入 | 能力矩阵 |
+|---|---|
+| ![统一接入](docs/screenshots/unified.jpg) | ![能力矩阵](docs/screenshots/capabilities.jpg) |
+
+| 工作台 | 生态 |
+|---|---|
+| ![工作台](docs/screenshots/workbench.jpg) | ![生态](docs/screenshots/ecosystem.jpg) |
+
+面板顶部：
+
+![面板顶部](docs/screenshots/panel-header.png)
 
 ## 技术栈
 
@@ -212,7 +230,7 @@ web/src/routes/home.tsx            首页路由
 web/src/lib/legacy-route.ts        旧路径映射
 web/src/components/layout/         头部、页脚、布局
 deploy/nginx.conf.example          nginx 示例
-docs/preview-header.png            导航截图
+docs/screenshots/                  界面截图
 NOTICE                             上游声明与本次修改记录
 ```
 
