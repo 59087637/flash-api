@@ -18,10 +18,25 @@
                '/system-settings', '/redemption-codes', '/wallet', '/about',
                '/models', '/pricing/self'];
 
+  /* 控制台路由不套深空主题，沿用 New API 原本的背景与配色 */
+  var CONSOLE = ['/dashboard', '/channels', '/users', '/usage-logs', '/keys',
+                 '/system-settings', '/redemption-codes', '/wallet',
+                 '/subscriptions', '/models', '/playground', '/profile',
+                 '/security', '/chat', '/chat2link', '/task-plugins'];
+
   function pathIsDense() {
     var p = String(location.pathname || '/').toLowerCase();
     for (var i = 0; i < DENSE.length; i++) {
       if (p.indexOf(DENSE[i]) === 0) { return true; }
+    }
+    return false;
+  }
+
+  function pathIsConsole() {
+    var p = String(location.pathname || '/').toLowerCase();
+    if (p === '/' || p === '') { return true; }
+    for (var i = 0; i < CONSOLE.length; i++) {
+      if (p === CONSOLE[i] || p.indexOf(CONSOLE[i] + '/') === 0) { return true; }
     }
     return false;
   }
@@ -318,7 +333,7 @@
      ------------------------------------------------------------ */
   function boot() {
     var root = document.documentElement;
-    root.classList.add('orbit-on');
+    root.classList.toggle('orbit-on', !pathIsConsole());
 
     var cv = document.createElement('canvas');
     cv.id = 'orbit-canvas';
@@ -354,8 +369,11 @@
     var label = btn.querySelector('.ot-label');
 
     function sync() {
+      var onConsole = pathIsConsole();
+      root.classList.toggle('orbit-on', !onConsole);
+      btn.style.display = onConsole ? 'none' : '';
       var m = mode();
-      var run = shouldRun() && !reduce;
+      var run = !onConsole && shouldRun() && !reduce;
       btn.setAttribute('data-state', m);
       label.textContent = (m === 'auto') ? (run ? '自动' : '静默') : (run ? '开' : '关');
       if (run) {
